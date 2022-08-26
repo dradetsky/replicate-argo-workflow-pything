@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: basic-example-
+  namespace: argo
+spec:
+  entrypoint: my-template
+  templates:
+    - name: my-template
+      steps:
+        - - name: step0
+            when: "true"
+            inline:
+              script:
+                image: python:3.9
+                command: [python]
+                source: |
+                  print("oh hai step0")
+
+          - name: step1
+            when: "true"
+            inline:
+              script:
+                image: python:3.9
+                command: [python]
+                source: |
+                  print("oh hai step1")
